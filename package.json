@@ -1,0 +1,69 @@
+{
+  "name": "sorrygle-desktop",
+  "version": "1.0.0",
+  "description": "A Sorrygle Editor Desktop app made with Electron\r ## What is Sorrygle?\r [Sorrygle](https://github.com/JJoriping/Sorrygle) is MML made by [JJoriping](https://github.com/JJoriping)",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win32": "electron-builder --win portable --ia32",
+    "build:win64": "electron-builder --win portable --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "electron-builder --linux --ia32",
+    "build:linux64": "electron-builder --linux --x64",
+    "build:osx": "electron-builder --mac"
+  },
+  "build": {
+    "productName": "Sorrygle Desktop",
+    "appId": "com.hariyuri.sorrygleDesktop",
+    "asar": true,
+    "protocols": {
+      "name": "Sorrygle Desktop",
+      "schemes": [
+        "Sorrygle Desktop"
+      ]
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./assets/favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muzihuzi/Sorrygle-Desktop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muzihuzi/Sorrygle-Desktop/issues"
+  },
+  "homepage": "https://github.com/Muzihuzi/Sorrygle-Desktop#readme",
+  "dependencies": {
+    "@fontsource/ubuntu": "^4.2.1",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "dialog": "^0.3.1",
+    "electron-reload": "^2.0.0-alpha.1",
+    "fontawesome": "^5.6.3",
+    "fs-extra": "^10.0.0",
+    "midi-player-js": "^2.0.16",
+    "remote": "^0.2.6",
+    "sorrygle-node12": "^1.2.4-a",
+    "web-midi-player": "^1.4.1"
+  },
+  "devDependencies": {
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5"
+  }
+}
