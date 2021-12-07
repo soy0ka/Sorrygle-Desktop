@@ -13,4 +13,4 @@ A Sorrygle Editor Desktop app made with Electron
 [dialog](github.com/tomas/dialog) under MIT License <br>
 [fontawesome](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt) under [fontawesome-free License](https://fontawesome.com/license/free) <br>
 
-__**[LOGO(ICON)](https://github.com/Muzihuzi/Sorrygle-Desktop/blob/main/assets/favicon.ico) is a work by [JJoriping](https://github.com/JJoriping)**__
+__**[Sorryfield LOGO](https://github.com/Muzihuzi/Sorrygle-Desktop/blob/main/assets/favicon.ico) is a work by [JJoriping](https://github.com/JJoriping)**__
