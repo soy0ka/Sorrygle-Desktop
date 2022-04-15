@@ -63,7 +63,7 @@
     "web-midi-player": "^1.4.1"
   },
   "devDependencies": {
-    "electron": "18.0.0",
+    "electron": "18.0.4",
     "electron-builder": "^22.14.5"
   }
 }
