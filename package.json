@@ -52,7 +52,7 @@
   "homepage": "https://github.com/Muzihuzi/Sorrygle-Desktop#readme",
   "dependencies": {
     "@fontsource/ubuntu": "^4.2.1",
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-free": "^6.0.0",
     "dialog": "^0.3.1",
     "electron-reload": "^2.0.0-alpha.1",
     "fontawesome": "^5.6.3",
