@@ -7,20 +7,18 @@
       content="width=device-width, initial-scale=1,
       user-scalable=no"
     />
-    <link rel="stylesheet" href="./assets/fontawesome.css" />
     <link rel="stylesheet" href="./assets/all.css" />
-    <script src="./assets/midi-player.js"></script>
     <script src="./assets/main.js"></script>
-    <script src="./assets/jzz.js"></script>
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
     <script>
-      require("electron").ipcRenderer.on("playToggle", (event, message) => {
+      require('electron').ipcRenderer.on('playToggle', (event, message) => {
         if (!message) {
           stop()
         } else {
           play(document.getElementsByTagName('textarea')[0].value)
         }
       })
-      require("electron").ipcRenderer.on("save2midi", () => {
+      require('electron').ipcRenderer.on('save2midi', () => {
         save2midi(document.getElementsByTagName('textarea')[0].value)
       })
     </script>
@@ -30,7 +28,7 @@
       <form target="_blank" onsubmit="return false">
         <textarea
           name="data"
-          style="resize: none; height: 670px; flex: auto"
+          style="resize: none; height: 500px; flex: auto"
           spellcheck="false"
         ></textarea>
         <div class="menu">
@@ -51,5 +49,35 @@
       </form>
       <div class="help"></div>
     </article>
+
+    <div style="background-color: aliceblue; margin: 3px">
+        <midi-visualizer
+          id="srgVisualizer"
+          type="staff"
+        ></midi-visualizer>
+        <midi-player
+          style="display: none;"
+          id="srgPlayer"
+          sound-font visualizer="midi-visualizer">
+        </midi-player>
+    </div>
+    <script>
+      const player = document.getElementById('srgPlayer')
+      player.addEventListener('stop', () => stop())
+      player.addEventListener('load', () => {
+        player.start()
+      })
+      require('electron').ipcRenderer.on('timeChange', (event, value) => {
+        player.currentTime = value / 100
+      })
+
+      setInterval(async()=>{
+        if(!player.playing) return
+        ipcRenderer.send('update',{
+          duration: player.duration,
+          current: player.currentTime
+        })
+      }, 1000)
+    </script>
   </body>
 </html>

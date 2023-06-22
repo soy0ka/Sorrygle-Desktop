@@ -53,10 +53,12 @@
   "dependencies": {
     "@fontsource/ubuntu": "^4.2.1",
     "@fortawesome/fontawesome-free": "^6.4.0",
+    "@magenta/music": "^1.23.1",
     "dialog": "^0.3.1",
     "electron-reload": "^2.0.0-alpha.1",
     "fontawesome": "^5.6.3",
     "fs-extra": "^10.0.0",
+    "html-midi-player": "^1.5.0",
     "midi-player-js": "^2.0.16",
     "remote": "^0.2.6",
     "sorrygle-node12": "^1.2.4-a",

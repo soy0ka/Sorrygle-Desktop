@@ -9,6 +9,16 @@ require('electron-reload')(__dirname, {
 
 const isMac = process.platform === 'darwin'
 
+function format(sec_num) {
+  const hours   = Math.floor(sec_num / 3600)
+  const minutes = Math.floor((sec_num - (hours * 3600)) / 60)
+  const seconds = sec_num - (hours * 3600) - (minutes * 60)
+
+  if (minutes < 10) {minutes = "0"+minutes;}
+  if (seconds < 10) {seconds = "0"+seconds;}
+  return minutes+':'+seconds;
+}
+
 function createWindow () {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
 
@@ -134,8 +144,18 @@ app.whenReady().then(async() => {
     }
   }) 
   
+  const player = new TouchBar.TouchBarSlider({
+    label: '00:00/00:00',
+    minValue: 0,
+    maxValue: 0,
+    value: 0,
+    change: (value) => {
+      window.webContents.send('timeChange', value)
+    }
+  })
+  
   const touchBar = new TouchBar({
-    items:[playButton, saveButton]
+    items:[playButton, saveButton, player]
   })
   window.setTouchBar(touchBar)
   app.on('activate', function () {
@@ -143,11 +163,24 @@ app.whenReady().then(async() => {
   })
   ipcMain.on('stop',()=>{
     isPlaying = false
+    player.value = 0
+    player.maxValue = 0
     playButton.label = '▶ 재생'
   })
   ipcMain.on('start',()=>{
     isPlaying = true
     playButton.label = '■ 정지'
+  })
+  ipcMain.on('update',(event, payload)=>{
+    if (payload.duration) {
+      player.label = `00:00/${new Date(Math.floor(payload.duration) * 1000).toISOString().slice(14, 19)}`
+      player.maxValue = Math.floor(payload.duration*100)
+    }
+    if (!payload.duration || !payload.current) return
+    player.maxValue = Math.floor(payload.duration*100)
+    player.value = Math.floor(payload.current*100)
+    // player.value = Math.floor(payload.current/payload.duration * 1000)
+    player.label = `${new Date(Math.floor(payload.current) * 1000).toISOString().slice(14, 19)}/${new Date(Math.floor(payload.duration) * 1000).toISOString().slice(14, 19)}`
   })
 })
 
