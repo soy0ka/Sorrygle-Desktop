@@ -14,10 +14,15 @@ const os = require('os')
 const { homedir, username } = os.userInfo()
 const temppath = `${homedir}/ouput.mid`
 function play(srg) {
-  if(!srg) return alert('쏘리글 데이터가 없습니다')
+  ipcRenderer.send('start')
+  if(!srg) {
+    ipcRenderer.send('stop')
+    return alert('쏘리글 데이터가 없습니다')
+  }
   try{
     Sorrygle.parse(srg)
   }catch(e){
+    ipcRenderer.send('stop')
     return alert('쏘리글 컴파일에 실패했습니다\n'+e)
   }
   document.getElementsByName("playButton")[0].disabled = true
@@ -42,7 +47,7 @@ function play(srg) {
   }, 150)
 }
 info.on('endOfFile', async function() {
-  await sleep(700)
+  await sleep(500)
   stop()
   try{
     fs.unlinkSync(temppath)
@@ -53,6 +58,7 @@ info.on('endOfFile', async function() {
 function stop() {
   midiPlayer.stop()
   info.stop()
+  ipcRenderer.send('stop')
   document.getElementsByName("playButton")[0].disabled = false
   document.getElementsByName("playButton")[0].getElementsByTagName('i')[0].className = 'icon fa-fw fas fa-play'
   document.getElementsByName("playButton")[0].childNodes[1].data = " 재생"

@@ -1,20 +1,17 @@
-const {app, BrowserWindow, screen, Menu, ipcMain} = require('electron')
-const { dialog } = require('electron')
+const { app, BrowserWindow, screen, Menu, ipcMain, dialog, TouchBar } = require('electron')
 const path = require('path')
 const { FileManager } = require("./libs/FileManager")
 const fs = require('fs')
 
-// require('electron-reload')(__dirname, {
-//   electron: require(`${__dirname}/node_modules/electron`)
-// })
+require('electron-reload')(__dirname, {
+  electron: require(`${__dirname}/node_modules/electron`)
+})
 
 const isMac = process.platform === 'darwin'
 
 function createWindow () {
-
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
 
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 800,
@@ -113,32 +110,55 @@ function createWindow () {
     },]
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+
+  return mainWindow
 }
 
-app.whenReady().then(() => {
-  createWindow()
+let isPlaying = false
+
+app.whenReady().then(async() => {
+  const window = createWindow()
+  const playButton = new TouchBar.TouchBarButton({
+    label: '▶ 재생',
+    click: () => {
+      isPlaying = !isPlaying
+      playButton.label = isPlaying ? '■ 정지' : '▶ 재생'
+      window.webContents.send('playToggle', isPlaying)
+    }
+  })
+
+  const saveButton =  new TouchBar.TouchBarButton({
+    label:'💾 MID로 저장',
+    click: () => {
+      window.webContents.send('save2midi')
+    }
+  }) 
   
+  const touchBar = new TouchBar({
+    items:[playButton, saveButton]
+  })
+  window.setTouchBar(touchBar)
   app.on('activate', function () {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+  ipcMain.on('stop',()=>{
+    isPlaying = false
+    playButton.label = '▶ 재생'
+  })
+  ipcMain.on('start',()=>{
+    isPlaying = true
+    playButton.label = '■ 정지'
   })
 })
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
-ipcMain.on("save2midi", (e, arg) => {
-  console.log(arg)
+ipcMain.on('save2midi', (e, arg) => {
   const path = dialog.showSaveDialog( {
-    title: "쏘리글을 mid로 저장하기",
-    filters: [ { name:"mid file", extensions: [ "mid" ] } ],
+    title: '쏘리글을 mid로 저장하기',
+    filters: [ { name:'mid file', extensions: [ 'mid' ] } ],
   }).then(path => path)
   .then(data => {
     if(data.canceled) return
