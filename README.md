@@ -6,8 +6,7 @@ A Sorrygle Editor Desktop app made with Electron
 ## OpenSource License
 **[electron](github.com/electron/electron) under MIT License**<br>
 [sorrygle-node12](https://github.com/lshqqytiger/Sorrygle-node12) under MIT License<br>
-[web-midi-player](https://github.com/yvesgurcan/web-midi-player) under MIT License<br>
-[midi-player-js](https://github.com/grimmdude/MidiPlayerJS) under MIT License<br>
+[html-midi-player](https://github.com/cifkao/html-midi-player) under BSD-2-Clause license<br>
 [fs-extra](https://github.com/jprichardson/node-fs-extra) under MIT License<br>
 [electron-reload](https://github.com/yan-foto/electron-reload) under MIT License <br>
 [dialog](https://github.com/tomas/dialog) under MIT License <br>
