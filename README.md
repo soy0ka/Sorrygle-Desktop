@@ -2,7 +2,7 @@
 A Sorrygle Editor Desktop app made with Electron
 ## What is Sorrygle?
 [Sorrygle](https://github.com/JJoriping/Sorrygle) is MML(Music Macro Language) simillar languge for midi; made by [JJoriping](https://github.com/JJoriping)
-![image](https://user-images.githubusercontent.com/55011525/144843216-eaf607f6-f704-4372-9172-797ad43daa25.png)
+<img width="912" alt="image" src="https://github.com/rihayoru/Sorrygle-Desktop/assets/55011525/0d28fc5a-eb2c-4757-b6af-9ea1018820f5">
 ## OpenSource License
 **[electron](github.com/electron/electron) under MIT License**<br>
 [sorrygle-node12](https://github.com/lshqqytiger/Sorrygle-node12) under MIT License<br>
