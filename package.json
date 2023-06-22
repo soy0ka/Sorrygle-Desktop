@@ -1,6 +1,6 @@
 {
   "name": "sorrygle-desktop",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Sorrygle Editor Desktop app made with Electron\r ## What is Sorrygle?\r [Sorrygle](https://github.com/JJoriping/Sorrygle) is MML made by [JJoriping](https://github.com/JJoriping)",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "build": {
     "productName": "Sorrygle Desktop",
-    "appId": "com.hariyuri.sorrygleDesktop",
+    "appId": "com.rihayoru.sorrygleDesktop",
     "asar": true,
     "protocols": {
       "name": "Sorrygle Desktop",
