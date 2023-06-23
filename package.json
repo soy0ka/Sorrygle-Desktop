@@ -42,14 +42,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Muzihuzi/Sorrygle-Desktop.git"
+    "url": "git+https://github.com/rihayoru/Sorrygle-Desktop.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Muzihuzi/Sorrygle-Desktop/issues"
+    "url": "https://github.com/rihayoru/Sorrygle-Desktop/issues"
   },
-  "homepage": "https://github.com/Muzihuzi/Sorrygle-Desktop#readme",
+  "homepage": "https://github.com/rihayoru/Sorrygle-Desktop#readme",
   "dependencies": {
     "@fontsource/ubuntu": "^4.2.1",
     "@fortawesome/fontawesome-free": "^6.4.0",

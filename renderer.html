@@ -51,6 +51,10 @@
     </article>
 
     <div style="background-color: aliceblue; margin: 3px">
+      <div class="slidecontainer" style="display: flex; margin: 5px;">
+        <p id="timeDisplay">00:00/00:00</p>
+        <input id="sliderDisplay" type="range" min="0" max="0" value="0" style="width: 100%;">
+      </div>
         <midi-visualizer
           id="srgVisualizer"
           type="staff"
@@ -70,9 +74,16 @@
       require('electron').ipcRenderer.on('timeChange', (event, value) => {
         player.currentTime = value / 100
       })
-
+      document.getElementById('sliderDisplay').addEventListener('input', function(event) {
+        player.currentTime = event.target.value
+      })
       setInterval(async()=>{
         if(!player.playing) return
+        const timeLabel = document.getElementById('timeDisplay')
+        const slider = document.getElementById('sliderDisplay')
+        slider.max = player.duration
+        slider.value = player.currentTime
+        timeLabel.innerText = `${new Date(Math.floor(player.currentTime || 0) * 1000).toISOString().slice(14, 19)}/${new Date(Math.floor(player.duration || 0) * 1000).toISOString().slice(14, 19)}`
         ipcRenderer.send('update',{
           duration: player.duration,
           current: player.currentTime
