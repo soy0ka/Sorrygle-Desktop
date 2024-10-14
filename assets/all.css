@@ -13,38 +13,38 @@
   line-height: 1;
 }
 .fa-play:before {
-  content: "\f04b";
+  content: '\f04b';
 }
 .fa-play-circle:before {
-  content: "\f144";
+  content: '\f144';
 }
 .fa-file-download:before {
-  content: "\f56d";
+  content: '\f56d';
 }
 .fa-fw {
   text-align: center;
   width: 1.25em;
 }
 .far {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-weight: 400;
 }
 @font-face {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url("../webfonts/fa-solid-900.eot");
-  src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
-    url("../webfonts/fa-solid-900.woff2") format("woff2"),
-    url("../webfonts/fa-solid-900.woff") format("woff"),
-    url("../webfonts/fa-solid-900.ttf") format("truetype"),
-    url("../webfonts/fa-solid-900.svg#fontawesome") format("svg");
+  src: url('../webfonts/fa-solid-900.eot');
+  src: url('../webfonts/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+    url('../webfonts/fa-solid-900.woff2') format('woff2'),
+    url('../webfonts/fa-solid-900.woff') format('woff'),
+    url('../webfonts/fa-solid-900.ttf') format('truetype'),
+    url('../webfonts/fa-solid-900.svg#fontawesome') format('svg');
 }
 
 .fa,
 .fas {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-weight: 900;
 }
 .fa-spin {
@@ -58,7 +58,7 @@
 }
 
 .fa-spinner:before {
-  content: "\f110";
+  content: '\f110';
 }
 @-webkit-keyframes fa-spin {
   0% {
@@ -108,12 +108,12 @@
 
 @font-face {
   font-family: Main;
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
-    format("woff");
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff')
+    format('woff');
 }
 @font-face {
   font-family: Japanese;
-  src: url("/media/fonts/kosugi-maru.woff2") format("woff2");
+  src: url('/media/fonts/kosugi-maru.woff2') format('woff2');
 }
 a {
   color: inherit;
@@ -152,6 +152,7 @@ textarea {
   font-family: inherit;
   min-width: 0;
 }
+
 input:hover,
 select:hover,
 textarea:hover {
@@ -180,15 +181,15 @@ textarea {
   resize: vertical;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   vertical-align: middle;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
-input[type="range"] {
+input[type='range'] {
   padding: 6px 0;
 }
 
